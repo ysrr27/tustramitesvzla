@@ -5522,16 +5522,10 @@ a.thumbnail.active {
   color: #1b8bb9;
 }
 .alert-info:before {
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  width: 14px;
+  
   height: 14px;
   background-color: #d9edf7;
   border-color: #bce8f1;
-  border-style: none solid solid none;
-  border-width: 0 1px 1px 0;
   bottom: -8px;
   content: "";
   display: block;

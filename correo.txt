@@ -1,0 +1,22 @@
+tustramitesweb@gmail.com
+pass: *webtustramites*
+
+
+texto de bienvenida
+
+Confirma tu dirección de correo electrónico
+
+¡Gracias por unirte a TUS TRAMITES EN VENEZUELA! Por favor, haz clic en el enlace de activación que acabamos de enviarte por correo. Si no encuentras el mensaje, revisa las carpetas de spam de tu cliente de correo o contacta con nosotros.
+
+
+
+
+
+texto de correo:
+
+Hola USUARIO,
+
+¡Gracias por registrarse en TUS TRAMITES EN VENEZUELA!
+
+
+Ahora puedes acceder a tustramites.html/ingeresar.html usando el nombre de usuario y la contraseña que registraste.
