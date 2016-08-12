@@ -367,6 +367,11 @@ border-color: #fff !important;
 
 }
 
+.image i{
+  font-size: 84px;
+  margin: 19px;
+}
+
 .ico-service{
     margin: auto;
     position: absolute;
@@ -414,6 +419,12 @@ border-color: #fff !important;
 .s-box{
   float: left;
   position: relative;
+}
+.jumbotron{
+  background: transparent;
+}
+.btn-vermas{
+  padding: 13px 19px !important;
 }
 /* ON HOVER COLORED ROUNDED CIRCLE AROUND ICONS */
 .red,.green,.blue,.yellow {
@@ -3693,10 +3704,10 @@ article.bannerInt img{width:auto;display:inline}
   background: #3c3c3c;
 }
 .engine {
-	position: absolute;
-	text-indent: -2400px;
-	text-align: center;
-	padding: 0;
+  position: absolute;
+  text-indent: -2400px;
+  text-align: center;
+  padding: 0;
 }
 
 /*Factura internal services*/
@@ -4025,6 +4036,10 @@ article.bannerInt img{width:auto;display:inline}
 .text-admin a{
   text-decoration: none;
   color: #5A738E;
+  outline: none;
+}
+.text-admin em{
+  font-size: 10px;
 }
 .text-admin a:hover{
 color: darkblue;
@@ -4164,6 +4179,77 @@ color: #btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning;
   font-weight: lighter;
   margin-left: 20px;
 }
+
+/*perfil*/
+  .cap i{
+    font-size: 100px;
+    margin-left: 19%;
+    margin-top: 5%;
+  }
+  .btn-modif{
+    background: transparent;
+    color: #5A738E;
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .btn-modif:hover{
+    color: #5A738E;
+  }
+  .btn-modif:focus {
+    color: #000;
+    border: none;
+  }
+
+  /* Icon Grow */
+.hvr-icon-modif {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-icon-modif:before {
+  content: "\f013";
+  position: absolute;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-icon-modif:hover:before, .hvr-icon-modif:focus:before, .hvr-icon-modif:active:before {
+  -webkit-transform: scale(1.3) translateZ(0);
+  transform: scale(1.3) translateZ(0);
+}
+
+
 .menuAdmin .menu ul {
   list-style-type: none;
     padding: 0;
@@ -4285,6 +4371,176 @@ color: #btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning;
   }
 }
 
+/*Menu mobile*/
+#menumobile{
+  display: none;
+}
+#menu {
+    position: fixed;
+    left: -300px;
+
+    width: 100%;
+    height: 100%;
+    padding: 50px 30px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+    -webkit-transition: all .3s ease-in;
+       -moz-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;
+    text-align: center;
+
+    background-color: #fff;
+}
+#menu .brand {
+    height: 51px;
+
+    font-size: 70px;
+    font-weight: 900;
+    line-height: .6;
+
+    color: #ddd;
+}
+#menu ul {
+    padding: 0;
+    margin-top: 30px;
+}
+#menu ul li{
+  list-style-type: none;
+}
+#menu ul li a {
+    display: block;
+
+    font-weight: 900;
+    line-height: 50px;
+
+    -webkit-transition: all .3s ease;
+       -moz-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    color: #eee;
+    border-bottom: 1px solid #eee;
+}
+#menu ul li:last-child a {
+    border-bottom: 1px solid #eee;
+}
+#menu ul li a:hover {
+    letter-spacing: 1px;
+}
+body.open #menu {
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 555;
+  color: #fff;
+}
+/* MAIN PAGE */
+.page-wrap {
+   
+    padding: 10px 30px 30px 10px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+    -webkit-transition: all .3s ease-in;
+       -moz-transition: all .3s ease-in;
+         -o-transition: all .3s ease-in;
+            transition: all .3s ease-in;
+}
+body.open .page-wrap {
+    margin-left: 225px;
+}
+
+/* MENU TOGGLE ICON */
+
+button:focus {
+    outline: none;
+}
+#menu-toggle {
+    position: fixed;
+
+    width: 51px;
+    height: 51px;
+
+    cursor: pointer;
+
+    border: none;
+    -webkit-border-radius: 50px;
+       -moz-border-radius: 50px;
+            border-radius: 50px;
+    border:1px solid;
+    z-index: 666;
+}
+#menu-toggle:before,
+#menu-toggle:after {
+    position: absolute;
+
+    content: "";
+    content: "";
+    -webkit-transition: all .5s ease;
+       -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+            transition: all .5s ease;
+
+    background-color: #232629;
+}
+
+#menu-toggle:before {
+    top: 12px;
+    left: 25px;
+
+    width: 1px;
+    height: 27px;
+}
+#menu-toggle:after {
+    top: 25px;
+    left: 12px;
+
+    width: 27px;
+    height: 1px;
+}
+
+body.open button#menu-toggle:before,
+body.open button#menu-toggle:after {
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+/* CONTENT CONTAINER */
+.containermenu {
+    max-width: 600px;
+    min-width: 200px;
+    margin: 0 auto;
+}
+/*EndMenu Mobile*/
+@media (max-width: 600px) {
+  /*admin user*/
+  .menu{
+    display: none;
+  }
+  .progress-bar .bar span {
+    width: 170px !important;
+  }
+  .progress-bar {
+    width: 170px !important;
+  }
+  #menumobile{
+    display: block;
+  }
+  #menu {
+    left: -500px;
+    top:0;
+  }
+
+  body.open .page-wrap {
+    margin-left: 385px;
+  }
+}
+
 
 @media (max-width: 400px) {
   .swMain{
@@ -4316,5 +4572,17 @@ color: #btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning;
  #info-correo{
   display: none;
  }
-
+ /*admin user*/
+ .menu{
+  display: none;
+ }
+.progress-bar .bar span {
+  width: 170px !important;
+}
+.progress-bar {
+  width: 170px !important;
+}
+#menumobile{
+  display: block;
+}
 }
