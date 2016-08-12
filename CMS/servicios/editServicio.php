@@ -92,8 +92,8 @@ while ($rowRecaudos=mysqli_fetch_array($queryRecaudos)) {
 
 
                   <br />
-                  <form class="form-horizontal form-label-left" data-parsley-validate id="formServicios" name="formServicios" enctype="multipart/form-data">
-                    <input type="hidden" name="idServicio" value="<?=$idServicio?>" />
+                  <form class="form-horizontal form-label-left" method="POST" action="addServicio.php" data-parsley-validate id="formServicios" name="formServicios" enctype="multipart/form-data">
+                     <input type="hidden" name="idServicio" value="<?=$idServicio?>" />
                     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
                       <label>Nombre del Servicio:</label>
                       <span class="fa fa-text-height form-control-feedback left" aria-hidden="true"></span>
@@ -228,14 +228,11 @@ while ($rowRecaudos=mysqli_fetch_array($queryRecaudos)) {
                           </div>
 
                           <div id="editor">
-                            <?=$m_servicio_descripcion?>
+                             <?=$m_servicio_descripcion?>
                           </div>
-                          <textarea name="descripcionOferta" value="<?=$m_servicio_descripcion?>" id="descripcionOferta" style="display:none;"></textarea>
-                          <br />
+                          <input type="hidden" name="descripcion" id="descripcion">
 
                           <div class="ln_solid"></div>
-
-                          <input type="hidden" id="descripcion" name="descripcion" value="">
 
                         </div>
                       </div>
@@ -246,7 +243,7 @@ while ($rowRecaudos=mysqli_fetch_array($queryRecaudos)) {
                     <label for="message">Estatus del Servivio :</label>
                     <div class="radio" id="EstatusRadio">
 
-                     <input type="checkbox" class="js-switch" id="estatus" name="estatus" value="1" <?php if($m_servicio_estatus){ echo "checked='checked'"; } ?>/>  
+                     <input type="checkbox" class="js-switch" id="estatus" name="estatus" value="1"  <?php if($m_servicio_estatus){ echo "checked='checked'"; } ?>/> 
                      <label id="estatusText" for="estatus"><?php if($m_servicio_estatus){ echo "Activo"; } else{ echo "Inactivo"; }?></label>
                    </div>
                  </div>
@@ -901,7 +898,9 @@ $(function() {
     },
 
     submitHandler: function(form) {
-      document.getElementById('descripcion').value = document.getElementById("editor").innerHTML;
+      var desc=document.getElementById("editor").innerHTML;
+      document.getElementById('descripcion').value = desc.trim() ;
+
       var formData = new FormData($("#formServicios")[0]);
       $.ajax({
         url: "modifyServicio.php",

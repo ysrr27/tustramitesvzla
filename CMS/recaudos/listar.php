@@ -103,13 +103,13 @@ $link=Conectarse();
                           $m_recaudo_descripcion=$row["m_recaudo_descripcion"];
                           $m_recaudo_estatus=$row["m_recaudo_estatus"];
                           if ($m_recaudo_estatus) {
-                            $m_recaudo_estatus="ACTIVA";
+                            $m_recaudo_estatus="ACTIVO";
                             $icon="power-off";
                             $text="Desactivar recaudo";
                             $nextStatus=0;
                             $color="success";
                           } else {
-                            $m_recaudo_estatus="INACTIVA";
+                            $m_recaudo_estatus="INACTIVO";
                             $icon="check";
                             $text="Activar recaudo";
                             $nextStatus=1;

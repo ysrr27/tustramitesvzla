@@ -59,12 +59,12 @@ if (!control_access("ADMINISTRACION", 'VER')) {  echo "<script language='JavaScr
                     <thead>
                       <tr>
                         <th style="width: 1%">#</th>
-                        <th style="width: 20%">Nombre del Usuario</th>
-                        <th>Grupo al que pertenece</th>
+                        <th style="width: 20%">Nombre</th>
+                        <th>Grupo</th>
                         <th>Login</th>
                         <th>Correo</th>
                         <th>Status</th>
-                        <th style="width: 20%">#Acciones</th>
+                        <th style="width: 30%">#Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -150,17 +150,17 @@ if (!control_access("ADMINISTRACION", 'VER')) {  echo "<script language='JavaScr
 
   <!--LIBRERIAS COMUNES-->
   <!-- jQuery -->
-    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../../vendors/nprogress/nprogress.js"></script>
+    <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
      <!-- NProgress -->
-    <script src="../../vendors/nprogress/nprogress.js"></script>
+    <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- bootstrap-progressbar -->
     <script src="../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- Custom Theme Scripts -->
