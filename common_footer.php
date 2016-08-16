@@ -1,4 +1,41 @@
-
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size section-contact" id="contacts2-90">
+    <div class="mbr-section__container container">
+        <div class="mbr-contacts mbr-contacts--wysiwyg row">
+            <div class="row ico-footer">
+                <div class="col-md-2 text-center mbr-contacts__text">
+                    <a href="#.">
+                        <strong><i class="fa fa-whatsapp ico-footer" aria-hidden="true"></i></strong><br>
+                        <strong class="mbr-contacts__text">+34 693 80 18 09</strong>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center mbr-contacts__text">
+                    <a href="https://www.facebook.com/Tus-tr%C3%A1mites-en-Venezuela-718992711564456/?fref=ts">
+                        <strong><i class="fa fa-facebook-square" aria-hidden="true"></i></strong><br>
+                        <strong>Tus Trámites en Venezuela</strong>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center mbr-contacts__text">
+                    <a href="https://twitter.com/Tustramitesenvz?ref_src=twsrc%5Etfw">
+                        <strong><i class="fa fa-twitter-square" aria-hidden="true"></i></strong><br>
+                        <strong> @Tustramitesenvz </strong>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center mbr-contacts__text">
+                    <a href="https://www.instagram.com/tustramitesenvenezuela/">
+                        <strong><i class="fa fa-instagram" aria-hidden="true"></i></strong><br>
+                        <strong>tustramitesenvenezuela</strong>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center mbr-contacts__text">
+                    <a href="mail.google.com">
+                        <strong><i class="fa fa-envelope" aria-hidden="true"></i></strong><br>
+                        <strong>envenezuelatustramites@gmail.com</strong>
+                    </a>
+                </div>
+            </div>    
+        </div>
+    </div>
+</section>
 <footer class="mbr-section mbr-section--relative mbr-section--fixed-size footer-color" id="footer1-91">
     <div class="mbr-section__container container">
         <div class="mbr-footer mbr-footer--wysiwyg row">

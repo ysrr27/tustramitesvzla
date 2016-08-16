@@ -20,7 +20,7 @@
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="quienessomos.php">QUIÉNES SOMOS</a></li>
                                 <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="contact.php">CONTACTO</a>
                                      <?php if ($usuNombre!="") { ?>
-                                    <button type="button" class="btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-user" aria-hidden="true"></i> <?=$usuNombre?></button>
+                                    <button type="button" class="btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning" data-toggle="modal"><a href="myaccount.php" title="Ir a mi cuenta"><i class="fa fa-user" aria-hidden="true"></i> <?=$usuNombre?></a></button>
                                       <button type="button" class="btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning"><a href="cerrar.php" title="Cerrar Sesión"><i class="fa fa-eject" aria-hidden="true"></i></a></button>
                                     <?php } else { ?>
                                      <button type="button" class="btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning" data-toggle="modal" data-target="#myModallogueo"><i class="fa fa-user" aria-hidden="true"></i></button>

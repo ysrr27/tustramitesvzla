@@ -2,6 +2,8 @@
 include('extras/conexion.php');
 $link=Conectarse();
 
+
+
 if((isset($_GET["serv"]))&&($_GET["serv"]!="")){ $idServicio=strip_tags(htmlentities($_GET["serv"])); } else {echo "<script language='JavaScript'>parent.location.href='index.php';</script>";}
 
 $SQL="SELECT * FROM m_servicios WHERE m_servicio_id='$idServicio'";
@@ -173,46 +175,11 @@ if (!$m_servicio_estatus) {
             <div class="col-md-8 col-md-offset-1 col-xs-12"><img src="image/publicad728x90.jpg" alt=""></div>
         </div>
 
-        <section class="mbr-section mbr-section--relative mbr-section--fixed-size section-contact" id="contacts2-90">
-            <div class="mbr-section__container container">
-                <div class="mbr-contacts mbr-contacts--wysiwyg row">
-                    <div class="row ico-footer">
-                        <div class="col-md-2 text-center mbr-contacts__text">
-                            <a href="#.">
-                                <strong><i class="fa fa-whatsapp ico-footer" aria-hidden="true"></i></strong><br>
-                                <strong class="mbr-contacts__text">+34 693 80 18 09</strong>
-                            </a>
-                        </div>
-                        <div class="col-md-2 text-center mbr-contacts__text">
-                            <a href="https://www.facebook.com/Tus-tr%C3%A1mites-en-Venezuela-718992711564456/?fref=ts">
-                                <strong><i class="fa fa-facebook-square" aria-hidden="true"></i></strong><br>
-                                <strong>Tus Trámites en Venezuela</strong>
-                            </a>
-                        </div>
-                        <div class="col-md-2 text-center mbr-contacts__text">
-                            <a href="https://twitter.com/Tustramitesenvz?ref_src=twsrc%5Etfw">
-                                <strong><i class="fa fa-twitter-square" aria-hidden="true"></i></strong><br>
-                                <strong> @Tustramitesenvz </strong>
-                            </a>
-                        </div>
-                        <div class="col-md-2 text-center mbr-contacts__text">
-                            <a href="https://www.instagram.com/tustramitesenvenezuela/">
-                                <strong><i class="fa fa-instagram" aria-hidden="true"></i></strong><br>
-                                <strong>tustramitesenvenezuela</strong>
-                            </a>
-                        </div>
-                        <div class="col-md-2 text-center mbr-contacts__text">
-                            <a href="mail.google.com">
-                                <strong><i class="fa fa-envelope" aria-hidden="true"></i></strong><br>
-                                <strong>envenezuelatustramites@gmail.com</strong>
-                            </a>
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </section>
-
+      
         <?php include('common_footer.php');?>
+
+
+        
         <script type="text/javascript" src="assets/validate/jquery.numeric.min.js"></script>
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57865161c869895a"></script>
         <script type="text/javascript">

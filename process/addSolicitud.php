@@ -28,7 +28,7 @@ if ($idServicio==0) {
 
 if(count($aErrores)==0) { 
 
-	$query = "INSERT INTO m_solicitudes (m_solicitud_id, m_solicitud_idServicio, m_solicitud_nombreDestinatario, m_solicitud_apellidoDestinatario, m_solicitud_tipoTelefono, m_solicitud_telefonoDestinatario, m_solicitud_correoDestinatario, m_solicitud_paisDestinatario, m_solicitud_codigopostalDestinatario, m_solicitud_direccionDestinatario, m_solicitud_estatus_id, m_solicitud_fechaCreacion, m_solicitud_updated_at) VALUES (Null, '$idServicio', '$nombre', '$lastnameFinal', '$tipotelefono', '$numberFinal', '$mailFinal', '$countryFinal', '$postalcodeFinal', '$addressFinal', '1', '$fechacompleta', '$fechacompleta')";
+	$query = "INSERT INTO m_solicitudes (m_solicitud_id, m_solicitud_idCliente, m_solicitud_idServicio, m_solicitud_nombreDestinatario, m_solicitud_apellidoDestinatario, m_solicitud_tipoTelefono, m_solicitud_telefonoDestinatario, m_solicitud_correoDestinatario, m_solicitud_paisDestinatario, m_solicitud_codigopostalDestinatario, m_solicitud_direccionDestinatario, m_solicitud_estatus_id, m_solicitud_fechaCreacion, m_solicitud_updated_at) VALUES (Null, '$idusuario', '$idServicio', '$nombre', '$lastnameFinal', '$tipotelefono', '$numberFinal', '$mailFinal', '$countryFinal', '$postalcodeFinal', '$addressFinal', '1', '$fechacompleta', '$fechacompleta')";
 	$resultado = mysqli_query($link, $query);
 	$lasid=mysqli_insert_id($link);
 
