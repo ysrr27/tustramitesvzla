@@ -294,7 +294,7 @@
         $el.removeClass(css).addClass(css);
     };
     defaultFileActionSettings = {
-        showRemove: true,
+        showRemove: false,
         showUpload: true,
         showZoom: true,
         showDrag: true,

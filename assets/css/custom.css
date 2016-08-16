@@ -1,0 +1,62 @@
+#mensajes {
+    background-color: none;
+    border: 0px;
+    border-radius: 8px 8px 8px 8px;
+    float: center;
+    position: fixed;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: center;
+    width: 450px;
+    top:50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -225px;
+}
+#mensajesx {
+    background-color: none;
+    border: 0px;
+    border-radius: 8px 8px 8px 8px;
+    float: center;
+    position: fixed;
+    min-height: 50px;
+    overflow: hidden;
+    text-align: center;
+    width: 450px;
+    top:50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -225px;
+}
+#dataMessage{
+  font-weight: bold;
+  color: #FFFFFF;
+}
+ol,ul{
+  margin-bottom: 24px !important;
+}
+/** PNotify **/
+.alert-success {
+  color: #ffffff;
+  background-color: rgba(38, 185, 154, 0.88);
+  border-color: rgba(38, 185, 154, 0.88);
+}
+
+.alert-info {
+  color: #E9EDEF;
+  background-color: rgba(52, 152, 219, 0.88);
+  border-color: rgba(52, 152, 219, 0.88);
+}
+
+.alert-warning {
+  color: #E9EDEF;
+  background-color: rgba(243, 156, 18, 0.88);
+  border-color: rgba(243, 156, 18, 0.88);
+}
+
+.alert-danger,
+.alert-error {
+  color: #E9EDEF;
+  background-color: rgba(231, 76, 60, 0.88);
+  border-color: rgba(231, 76, 60, 0.88);
+}

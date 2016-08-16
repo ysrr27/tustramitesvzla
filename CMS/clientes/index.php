@@ -130,8 +130,9 @@ $link=Conectarse();
               <div class="ln_solid"></div>
               <div class="form-group">
                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                  <button type="button" onClick="document.location.href='listar.php'" class="btn btn-primary" >Cancelar</button>
                   <button type="submit" class="btn btn-success" id="btn_enviar">Guardar</button>
+                  <button type="button" onClick="document.location.href='listar.php'" class="btn btn-primary" >Cancelar</button>
+                  
                 </div>
               </div>
 
