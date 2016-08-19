@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/socicon/css/socicon.min.css">
     <link rel="stylesheet" href="assets/mobirise/css/style.css">
     <link rel="stylesheet" href="assets/mobirise-slider/style.css">
-    <link rel="stylesheet" href="assets/mobirise-gallery/style.css">
+    <!--<link rel="stylesheet" href="assets/mobirise-gallery/style.css">-->
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
     <link href="assets/mobirise/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/eventCalendar/css/eventCalendar.css">

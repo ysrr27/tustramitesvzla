@@ -35,11 +35,10 @@ $link=Conectarse();
               </div>
 
               <?php
-              $SQLClientes="SELECT SUM(CASE WHEN m_cliente_tipoCliente = '1' THEN 1 ELSE 0 END) AS clientes, SUM(CASE WHEN m_cliente_tipoCliente ='2' THEN 1 ELSE 0 END) AS usuarios FROM m_clientes WHERE m_cliente_estatus='1'  AND m_cliente_verificado='1' ORDER BY  m_cliente_id ASC ";
+              $SQLClientes="SELECT COUNT(*) AS clientes FROM m_clientes WHERE m_cliente_estatus='1'  ORDER BY  m_cliente_id ASC ";
               $queryCluentes=mysqli_query($link, $SQLClientes);
               $rowClientes=mysqli_fetch_array($queryCluentes);
               $cliemtesRegistrados=$rowClientes["clientes"];
-              $usuariosRegistrados=$rowClientes["usuarios"];
               ?>
               <div class="count"><?=$cliemtesRegistrados?></div>
 
@@ -73,15 +72,15 @@ $link=Conectarse();
               </div>
 
               <?php
-              $SQL24="SELECT COUNT(*) AS ventasHoy from m_ventas where m_venta_fecha between now() - INTERVAL 1 DAY and now()";
+              $SQL24="SELECT COUNT(*) AS solicitudesDay FROM m_solicitudes WHERE m_solicitud_fechaCreacion between now() - INTERVAL 1 DAY AND now()";
               $query24=mysqli_query($link, $SQL24);
               $row24=mysqli_fetch_array($query24);
-              $ventasHoy=$row24["ventasHoy"];
+              $solicitudesDay=$row24["solicitudesDay"];
               ?>
-              <div class="count"><?=$ventasHoy?></div>
+              <div class="count"><?=$solicitudesDay?></div>
 
-              <h3>Ventas del día</h3>
-              <p>Ventas de las últimas 24 horas</p>
+              <h3>Solicitudes del día</h3>
+              <p>Solicitudes de las últimas 24 horas</p>
             </div>
           </div>
         </div>
@@ -129,12 +128,12 @@ $link=Conectarse();
                     <ul class="list-unstyled top_profiles scroll-view">
 
                       <?php
-                      $SQLTop="SELECT C.m_cliente_razonSocial, C.m_cliente_mail, SUM(O.m_oferta_cantidad) AS cantidadOfertas FROM m_clientes AS C  INNER JOIN m_ofertas AS O ON C.m_cliente_id=O.m_oferta_idCliente GROUP BY C.m_cliente_id ORDER BY cantidadOfertas DESC LIMIT 0,5";
+                      $SQLTop="SELECT C.m_cliente_nombre, C.m_cliente_email, COUNT(*) AS cantidadSolicitudes FROM m_clientes AS C  INNER JOIN m_solicitudes AS S ON C.m_cliente_id=S.m_solicitud_idCliente GROUP BY C.m_cliente_id ORDER BY cantidadSolicitudes DESC LIMIT 0,5";
                       $queryTop=mysqli_query($link, $SQLTop);
                       while($rowTop=mysqli_fetch_array($queryTop)){
-                        $m_cliente_razonSocial=$rowTop["m_cliente_razonSocial"];
-                        $m_cliente_mail=$rowTop["m_cliente_mail"];
-                        $cantidadOfertas=$rowTop["cantidadOfertas"];
+                        $m_cliente_nombre=$rowTop["m_cliente_nombre"];
+                        $m_cliente_mail=$rowTop["m_cliente_email"];
+                        $cantidadSolicitudes=$rowTop["cantidadSolicitudes"];
                         ?>
 
                         <li class="media event">
@@ -142,9 +141,9 @@ $link=Conectarse();
                             <i class="fa fa-user aero"></i>
                           </a>
                           <div class="media-body">
-                            <a class="title" href="#"><?=$m_cliente_razonSocial?></a>
+                            <a class="title" href="#"><?=$m_cliente_nombre?></a>
                             <p> <?=$m_cliente_mail?> </p>
-                            <p> <small><?=$cantidadOfertas?> Ofertas</small>
+                            <p> <small><?=$cantidadSolicitudes?> Solicitudes</small>
                             </p>
                           </div>
                         </li>

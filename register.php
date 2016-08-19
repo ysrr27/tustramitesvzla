@@ -80,8 +80,9 @@
                 <div class="form-group row">
                     <div class="col-sm-3 col-xs-3">
                         <select class="form-control-registro form-select" name="tipoTelefono">
-                            <option value="celular">Celuar</option>
-                            <option value="casa">Casa</option>
+                            <option value="Celular">Celular</option>
+                            <option value="Casa">Casa</option>
+                            <option value="Oficina">Oficina</option>
                         </select>
                     </div>
                     <div class="col-sm-9 col-xs-9">

@@ -1,4 +1,4 @@
-<?php include('../logeo.php'); 
+<?php include('../logueo.php'); 
 include('../extras/conexion.php');
 $link=Conectarse();
 
@@ -6,29 +6,26 @@ header('Content-type: application/json; charset=utf-8');
 $aErrores=array();
 $jsondata = array();
 
-if((isset($_GET["idCliente"]))&&($_GET["idCliente"]!="")){ $idCliente=strip_tags(htmlentities(mysqli_real_escape_string($link, $_GET["idCliente"]))); } else {$idCliente=0;}
 
-if (!control_access("CLIENTES", 'ELIMINAR')) { 
-	$aErrores[]="USTED NO TIENE PERMISOS PARA REALIZAR ESTA ACCIÓN"; 
-}
+if((isset($_POST["newaddres"]))&&($_POST["newaddres"]!="")){ $newaddres=mysqli_real_escape_string($link, $_POST["newaddres"]); } else {$aErrores[] = "Debe introducir su dirección";}
 
 
 if(count($aErrores)==0) { 
 
-	$query = "DELETE FROM m_clientes  WHERE m_cliente_id='$idCliente' ";
+	$query = "UPDATE m_clientes SET m_cliente_direccion='$newaddres' WHERE m_cliente_id='$idusuario' ";
 	$resultado = mysqli_query($link, $query);
 	if ($resultado) {
 
 		$jsondata["success"] = true;
 		$jsondata["data"] = array(
-			'message' => "El Cliente ha sido borrado"
+			'message' => "Su dirección ha sido actualizada"
 			);
 
 
 	} else {
 		$jsondata["success"] = false;
 		$jsondata["data"] = array(
-			'message' => "ERROR - Ocurrió un error al intentar borrar al cliente"
+			'message' => "ERROR - Ocurrió un error al intentar actualizar su dirección"
 			);
 	}
 
@@ -38,7 +35,7 @@ if(count($aErrores)==0) {
 else{ 
 	$jsondata["success"] = false;
 	$jsondata["data"] = array(
-		'message' => $aErrores
+		'message' => $aErroresHas
 		);
 
 	echo json_encode($jsondata, JSON_FORCE_OBJECT);

@@ -18,16 +18,20 @@ $numeroSolicitudes=mysqli_num_rows($query);
 <!DOCTYPE html>
 <html>
 <head>
- <?php
- include('common_head.php');
- ?>
-
+   <?php
+   include('common_head.php');
+   ?>
+<style type="text/css">
+    .col-md-offset-1{
+        margin-left: 0px;
+    }
+</style>
 </head>
 <body>
 
- <?php  include('common_menu.php');?>
+   <?php  include('common_menu.php');?>
 
-<section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-92" style="background-image: url(image/ciudad_noche.jpg);">
+   <section class="content-2 simple col-1 col-undefined mbr-parallax-background mbr-after-navbar" id="content5-92" style="background-image: url(image/ciudad_noche.jpg);">
     <div class="mbr-overlay" style="opacity: 0.6; background-color: rgb(0, 0, 0);"></div>
     <div class="container">
         <div class="row">
@@ -45,24 +49,20 @@ $numeroSolicitudes=mysqli_num_rows($query);
     <nav id="menu" role="navigation">
         <ul>
             <li><a href="#" class="lnk-menu" id="resumenMobil">Resumen</a></li>
-            <li><a href="#" class="lnk-menu num-facturas">Facturación</a></li>
             <li><a href="#" class="lnk-menu num-solicitud">Solicitudes</a></li>
             <li><a href="#" class="lnk-menu" id="perfilMobil">Perfil</a></li>
         </ul>
     </nav>
     <div class="page-wrap">
         <button id="menu-toggle"></button>
-   </div>
+    </div>
 </div>
 <section class="container-fluid">
-<div class="container menuAdmin">
+    <div class="container menuAdmin">
         <div class="col-md-12 menu">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a class="nav-link active" id="resumen" href="#">Resumen</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="facturacion" href="#">Facturación</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="solicitudes" href="#">Solicitudes</a>
@@ -79,7 +79,6 @@ $numeroSolicitudes=mysqli_num_rows($query);
         <div class="row" id="resumen-details">
             <div class="col-md-12 text-admin">
                 <h4>Resumen</h4>
-                <a href="#" class="num-facturas"><button type="button" class="btn btn-secondary num-facturas">3</button> Tramites por Facturar</a> 
                 <hr>
                 <a href="#" class="num-solicitud"> <button type="button" class="btn btn-secondary"><?=$numeroSolicitudes?></button> Solicitud<?php if ($numeroSolicitudes>1) echo "es"; ?></a>
                 <hr>
@@ -87,144 +86,36 @@ $numeroSolicitudes=mysqli_num_rows($query);
                 <hr>
             </div>
         </div>
-        <!-- Facturacion -->
-        <div class="row" id="facturacion-details" style="display: none;">
-            <div class="col-md-12 col-xs-12 text-admin">
-                <h4>Facturación</h4>
-                <div class="col-md-12 text-center col-sm-12">
-                    <div class="col-md-1 col-sm-1">#</div>
-                    <div class="col-md-4 col-sm-4">Solicitud</div>
-                    <div class="col-md-4 col-sm-4">Pago</div>
-                    <div class="col-md-2 col-sm-2 col-md-offset-1">Estatus del Tramite</div>
-                </div>
-                <div class="col-md-12 tableAdmin text-center col-sm-12">
-                    <div class="col-md-1 col-sm-1">
-                        <blockquote class="card-blockquote"> 002050</blockquote>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="text-admin"><a href="internal-service.html"> Partida de Nacimiento </a></div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button type="button" class="btn btn-pay hvr-icon-pay-good" data-toggle="modal" data-target="#mypay"> <i class="fa fa-usd" aria-hidden="true"></i> Pago </button>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-md-offset-1">
-                        <button type="button" class="btn btn-info num-solicitud" data-toggle="modal" data-target=""> En proceso</button>
-                    </div>
-                </div>
-                <div class="col-md-12 tableAdmin text-center col-sm-12">
-                    <div class="col-md-1 col-sm-1">
-                        <blockquote class="card-blockquote"> 002050</blockquote>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="text-admin"><a href="internal-service.html"> Partida de Nacimiento </a></div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button type="button" class="btn btn-pay hvr-icon-pay-err" data-toggle="modal" data-target="#mypay"> <i class="fa fa-usd" aria-hidden="true"></i> Pago </button>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-md-offset-1">
-                        <button type="button" class="btn btn-info num-solicitud" data-toggle="modal" data-target=""> En proceso</button>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 tableAdmin text-center">
-                    <div class="col-md-1 col-sm-1">
-                        <blockquote class="card-blockquote"> 002050</blockquote>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="text-admin"><a href="internal-service.html"> Partida de Nacimiento </a></div>
-                    </div>
-                    <div class="col-md-4 col-sm-4">
-                        <button type="button" class="btn btn-pay hvr-icon-pay-info" data-toggle="modal" data-target="#mypay"> <i class="fa fa-usd" aria-hidden="true"></i> Pago </button>
-                    </div>
-                    <div class="col-md-2 col-sm-2 col-md-offset-1">
-                        <button type="button" class="btn btn-info num-solicitud" data-toggle="modal" data-target="#"> En proceso</button>
-                        <!-- modal de estatus -->
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="mypay" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                <div class="modal-header modal-head-login">
-                                    <div class="row col-ms-10">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-10">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                                                <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                                                    <span class="mbr-brand__logo">
-                                                        <a href="#">
-                                                            <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
-                                                        </a>
-                                                    </span>
-                                                    <span class="mbr-brand__name">
-                                                        <p class="mbr-brand__name text-white" href="#">TUS TRÁITES EN VENEZUELA </p>
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row text-left">
-                                        <div class="col-xs-12 tableAdmin">
-                                            <div class="col-xs-2"><strong># Cuotas:</strong></div>
-                                            <div class="col-xs-3"><strong><i class="fa fa-file-text-o" aria-hidden="true"></i> Tramite:</strong></div>
-                                            <div class="col-xs-3"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Fecha de Pago:</strong></div>
-                                            <div class="col-xs-4"><strong><i class="fa fa-spinner" aria-hidden="true"></i> Estatus de Pago:</strong></div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="col-xs-2">1° cuota</div>
-                                            <div class="col-xs-3">Parida de Nacimiento</div>
-                                            <div class="col-xs-3">30/06/16</div>
-                                            <div class="col-xs-4"><i class="fa fa-check-circle" aria-hidden="true"></i> Pago recibido</div>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <div class="col-xs-2">2° cuota</div>
-                                            <div class="col-xs-3">Parida de Nacimiento</div>
-                                            <div class="col-xs-3">30/06/16</div>
-                                            <div class="col-xs-4"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Pendiente por pago</div>
-                                        </div>
-                                    </div>   
-                                    <div class="modal-footer">
-                                        <div class="row modal-color">
-                                        </div>                        
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        <!-- end modal  -->
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Solicitudes -->
 
-   
+
         <div class="row text-admin" id="solicitudes-details" style="display: none;" >
             <h4>Trámites</h4>
             <div class="col-md-12 text-center col-sm-12">
                 <div class="col-md-1 col-sm-1">#</div>
                 <div class="col-md-4 col-sm-4">Solicitud</div>
-                <div class="col-md-4 col-sm-4">Progreso</div>
+                <div class="col-md-2 col-sm-2">Progreso</div>
+                 <div class="col-md-2 col-sm-2">Pagos</div>
                 <div class="col-md-2 col-sm-2 col-md-offset-1">Estatus</div>
             </div>
             <!-- Solicitudes -->
-                 <?php 
-        $SQLSolicitudes="SELECT m_solicitud_estatus_id, m_solicitud_id, m_solicitud_updated_at, m_estatus_solicitud_id, m_estatus_solicitud_descripcion, m_servicio_nombre FROM m_solicitudes AS SOL, m_servicios AS SER, m_estatus_solicitudes AS ESTA WHERE SOL.m_solicitud_idCliente='$idusuario' AND SER.m_servicio_id=SOL.m_solicitud_idServicio AND ESTA.m_estatus_solicitud_id=m_solicitud_estatus_id";
-        $querySolicitudes=mysqli_query($link, $SQLSolicitudes);
-        while ($rowSolicitudes=mysqli_fetch_array($querySolicitudes)) {
-            $m_solicitud_id=$rowSolicitudes["m_solicitud_id"];
-            $m_solicitud_estatus_id=$rowSolicitudes["m_solicitud_estatus_id"];
-            $m_solicitud_updated_at=$rowSolicitudes["m_solicitud_updated_at"];
-            $m_solicitud_estatus_id=$rowSolicitudes["m_solicitud_estatus_id"];
-            $m_estatus_solicitud_descripcion=$rowSolicitudes["m_estatus_solicitud_descripcion"];
-            $m_servicio_nombre=$rowSolicitudes["m_servicio_nombre"];
+            <?php 
+            $SQLSolicitudes="SELECT m_solicitud_estatus_id, m_solicitud_id, m_solicitud_updated_at, m_estatus_solicitud_id, m_estatus_solicitud_descripcion, m_servicio_nombre, m_solicitud_idServicio FROM m_solicitudes AS SOL, m_servicios AS SER, m_estatus_solicitudes AS ESTA WHERE SOL.m_solicitud_idCliente='$idusuario' AND SER.m_servicio_id=SOL.m_solicitud_idServicio AND ESTA.m_estatus_solicitud_id=m_solicitud_estatus_id";
+            $querySolicitudes=mysqli_query($link, $SQLSolicitudes);
+            while ($rowSolicitudes=mysqli_fetch_array($querySolicitudes)) {
+                $m_solicitud_id=$rowSolicitudes["m_solicitud_id"];
+                $m_solicitud_estatus_id=$rowSolicitudes["m_solicitud_estatus_id"];
+                $m_solicitud_updated_at=$rowSolicitudes["m_solicitud_updated_at"];
+                $m_solicitud_estatus_id=$rowSolicitudes["m_solicitud_estatus_id"];
+                $m_estatus_solicitud_descripcion=$rowSolicitudes["m_estatus_solicitud_descripcion"];
+                $m_solicitud_idServicio =$rowSolicitudes["m_solicitud_idServicio"];
+                $m_servicio_nombre=$rowSolicitudes["m_servicio_nombre"];
 
-            if ($m_solicitud_estatus_id ==1) {
-               $porcentajeAvance=0;
-            } else {
+                if ($m_solicitud_estatus_id ==1) {
+                 $porcentajeAvance=0;
+             } else {
                 $porcentajeAvance= round(($m_solicitud_estatus_id -1) / 4 * 100, 2);
             }
             $porcentajeN=100-$porcentajeAvance;
@@ -239,10 +130,10 @@ $numeroSolicitudes=mysqli_num_rows($query);
                 case 3: 
                 $tipoBoton =  "info";
                 break;
-                 case 4: 
+                case 4: 
                 $tipoBoton =  "dark";
                 break;
-                 case 5: 
+                case 5: 
                 $tipoBoton =  "success";
                 break;
                 case 6: 
@@ -251,18 +142,18 @@ $numeroSolicitudes=mysqli_num_rows($query);
                 case 7: 
                 $tipoBoton =  "danger";
                 break;
-               
+
             }
 
-        ?>
-         <script>
+            ?>
+            <script>
 
-        $(document).ready(function() {
-            $("#positive<?=$m_solicitud_id?>").css("width", "<?=$porcentajeAvance?>%");
-            $("#negative<?=$m_solicitud_id?>").css("width", "<?=$porcentajeN?>%");
-        });
+            $(document).ready(function() {
+                $("#positive<?=$m_solicitud_id?>").css("width", "<?=$porcentajeAvance?>%");
+                $("#negative<?=$m_solicitud_id?>").css("width", "<?=$porcentajeN?>%");
+            });
 
-    </script>
+            </script>
             <div class="col-md-12 tableAdmin text-center col-sm-12">
                 <div class="col-md-1 col-sm-1">
                     <blockquote class="card-blockquote"> 00<?=$m_solicitud_id?></blockquote>
@@ -270,23 +161,64 @@ $numeroSolicitudes=mysqli_num_rows($query);
                 <div class="col-md-4 col-sm-4">
                     <div class="text-admin"><a href="internal-service.html"> <?=$m_servicio_nombre?> </a></div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-md-offset-1">
+                <div class="col-md-2 col-sm-2 col-md-offset-1">
                     <div class="progress-bar">
                         <div class="bar positive" id="positive<?=$m_solicitud_id?>">
-                            <span><?=$porcentajeN?>%</span>
+                            <span><?=$porcentajeAvance?>%</span>
                         </div>
                         <div class="bar negative" id="negative<?=$m_solicitud_id?>">
                             <span><?=$porcentajeAvance?>%</span>
                         </div>
                     </div>
                 </div>
+                 <div class="col-md-2 col-sm-2">
+                        <button type="button" class="btn btn-pay hvr-icon-pay-good" data-toggle="modal" data-id="<?=$m_solicitud_id?>" onclick="showAjaxModal('<?=$m_solicitud_id?>', '<?=$m_solicitud_idServicio?>');"> <i class="fa fa-usd" aria-hidden="true"></i> Pagos </button>
+                    </div>
                 <div class="col-md-2 col-sm-2">
-                    <button type="button" class="btn btn-<?=$tipoBoton?>" data-toggle="modal" data-target="#myStatus"> <?=utf8_encode($m_estatus_solicitud_descripcion)?></button>
+                    <button type="button" class="btn btn-<?=$tipoBoton?>"> <?=utf8_encode($m_estatus_solicitud_descripcion)?></button>
                 </div>
             </div>
-           
-         <?php } ?>
+
+            <?php } ?>
         </div>
+
+             <!-- Modal -->
+                        <div class="modal fade" id="mypay" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header modal-head-login">
+                                        <div class="row col-ms-10">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-10">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
+                                                    <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
+                                                        <span class="mbr-brand__logo">
+                                                            <a href="#">
+                                                                <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
+                                                            </a>
+                                                        </span>
+                                                        <span class="mbr-brand__name">
+                                                            <p class="mbr-brand__name text-white" href="#">TUS TRÁITES EN VENEZUELA </p>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        Cargando...
+                                        <div class="modal-footer">
+                                            <div class="row modal-color">
+                                            </div>                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end modal  -->
+
 
         <!-- Perfil -->
 
@@ -327,182 +259,191 @@ $numeroSolicitudes=mysqli_num_rows($query);
                         </div>
                         <!-- Modal Modificar Datos de Cuenta-->
                         <div class="modal fade" id="modificar-daros-cuenta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <form>
-                                        <div class="modal-header modal-head-login">
-                                            <div class="row col-ms-10">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-10">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                                                        <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                                                            <span class="mbr-brand__logo">
-                                                                <a href="#">
-                                                                    <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
-                                                                </a>
-                                                            </span>
-                                                            <span class="mbr-brand__name">
-                                                            <p class="mbr-brand__name text-white" href="#">TUS TRAMITES EN VENEZUELA </p>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                           <div id="mensajes"></div>
+                           <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header modal-head-login">
+                                    <div class="row col-ms-10">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
+                                                <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
+                                                    <span class="mbr-brand__logo">
+                                                        <a href="#">
+                                                            <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
+                                                        </a>
+                                                    </span>
+                                                    <span class="mbr-brand__name">
+                                                        <p class="mbr-brand__name text-white" href="#">TUS TRAMITES EN VENEZUELA </p>
+                                                    </span>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="modal-header">
-                                            <h4 class="modal-title text-center" id="myModalLabel">Actualizar Datos de Cuenta:</h4><hr>
-                                            <div class="form-group row">
-                                                <label class="col-xs-4 col-form-label">Nuevo usuario:</label>
-                                                <div class="col-xs-8">
-                                                    <input class="form-control-registro" type="text" value="Beiker" id="new-user" name="new-user">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-xs-4 col-form-label">Nueva clave:</label>
-                                                <div class="col-xs-8">
-                                                    <input class="form-control-registro" type="password" value="*****" id="new-password" name="new-password">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
+                                <form name="changePass" id="changePass" data-parsley-validate novalidate="novalidate">
+                                    <div class="modal-header">
+
+                                        <h4 class="modal-title text-center" id="myModalLabel">Cambiar Clave:</h4><hr>
+                                        <div class="form-group row">
+                                            <label class="col-xs-4 col-form-label">Clave Actual:</label>
+                                            <div class="col-xs-8">
+                                                <input class="form-control-registro" type="password" id="claveactual" name="claveactual">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xs-4 col-form-label">Nueva clave:</label>
+                                            <div class="col-xs-8">
+                                                <input class="form-control-registro" type="password"  id="newpassword" name="newpassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xs-4 col-form-label">Repite clave:</label>
+                                            <div class="col-xs-8">
+                                                <input class="form-control-registro" type="password"  id="repasswordnew" name="repasswordnew">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Cambiar Clave</button>
+                                        <button type="button" id="cerrarChangepass" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
-                        <div class="card">
-                            <div class="card-block">
-                                <strong class="card-title">Datos Personales</strong>
-                                <a href="#" title="Modificar Datos Personales" class="btn-modif hvr-icon-modif" data-toggle="modal" data-target="#modificar-daros-personales"></a>
-                                <ul>
-                                    <li>Nombre: <?=$m_cliente_nombre?></li>
-                                    <li>Apellido: <?=$m_cliente_apellido?></li>
-                                    <li>Correo: <?=$m_cliente_email?></li>
-                                    <li>Telf: <?=$m_cliente_numeroTelefono?></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Modal Modificar Datos Personales-->
-                        <div class="modal fade" id="modificar-daros-personales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <form>
-                                        <div class="modal-header modal-head-login">
-                                            <div class="row col-ms-10">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-10">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                                                        <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                                                            <span class="mbr-brand__logo">
-                                                                <a href="#">
-                                                                    <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
-                                                                </a>
-                                                            </span>
-                                                            <span class="mbr-brand__name">
-                                                            <p class="mbr-brand__name text-white" href="#">TUS TRÁMITES EN VENEZUELA </p>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-header">
-                                            <h4 class="modal-title  text-center" id="myModalLabel">Actualizar Datos Personales:</h4><hr>
-                                            <div class="form-group row">
-                                                <label class="col-xs-4 col-form-label text-center">Nuevo Correo:</label>
-                                                <div class="col-xs-8">
-                                                    <input class="form-control-registro" type="text" value="beiker01@correo.com" id="new-email" name="new-email">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-xs-4 col-form-label text-center">Nuevo Telef:</label>
-                                                <div class="col-xs-8">
-                                                    <input class="form-control-registro" type="text" value="+54 420 3000323" id="new-telf" name="new-telf">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <strong class="card-title">Datos Personales</strong>
+                            <a href="#" title="Modificar Datos Personales" class="btn-modif hvr-icon-modif" data-toggle="modal" data-target="#UpdatePersonalData"></a>
+                            <ul>
+                                <li>Nombre: <?=$m_cliente_nombre?></li>
+                                <li>Apellido: <?=$m_cliente_apellido?></li>
+                                <li>Correo: <?=$m_cliente_email?></li>
+                                <li>Telf: <?=$m_cliente_numeroTelefono?></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
-                        <div class="card">
-                            <div class="card-block">
-                                <strong class="card-title">Domicilio </strong>
-                                 <a href="#" title="Modificar Domicilio" class="btn-modif hvr-icon-modif" data-toggle="modal" data-target="#modificar-domicilio"></a>
-                                <ul>
-                                    <li><?=$m_cliente_direccion?></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal Modificar domicilio-->
-                    <div class="modal fade" id="modificar-domicilio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- Modal Modificar Datos Personales-->
+                    <div class="modal fade" id="UpdatePersonalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                    <form>
-                                        <div class="modal-header modal-head-login">
-                                            <div class="row col-ms-10">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-10">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                                                        <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                                                            <span class="mbr-brand__logo">
-                                                                <a href="#">
-                                                                    <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
-                                                                </a>
-                                                            </span>
-                                                            <span class="mbr-brand__name">
-                                                            <p class="mbr-brand__name text-white" href="#">TUS TRÁMITES EN VENEZUELA </p>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
+
+                                <div class="modal-header modal-head-login">
+                                    <div class="row col-ms-10">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
+                                                <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
+                                                    <span class="mbr-brand__logo">
+                                                        <a href="#">
+                                                            <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
+                                                        </a>
+                                                    </span>
+                                                    <span class="mbr-brand__name">
+                                                        <p class="mbr-brand__name text-white" href="#">TUS TRÁMITES EN VENEZUELA </p>
+                                                    </span>
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="modal-header">
-                                            <h4 class="modal-title text-center" id="myModalLabel">Actualizar Domicilio:</h4><hr>
-                                            <div class="form-group row">
-                                                <label class="col-xs-4 col-form-label text-center">Nueva Dirección:</label>
-                                                <div class="col-xs-8">
-                                                    <input class="form-control-registro" type="text" value="Madrid, España" id="new-addres" name="new-addres">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
+                                <div class="modal-header">
+                                    <div id="mensajesx"></div>
+                                <form name="updateNumber" id="updateNumber">
+                                    <h4 class="modal-title  text-center" id="myModalLabel">Actualizar Datos Personales:</h4><hr>
+
+                                    <div class="form-group row">
+                                        <label class="col-xs-4 col-form-label text-center">Nuevo Teléfono:</label>
+                                        <div class="col-xs-8">
+                                            <input class="form-control-registro" type="text" value="<?=$m_cliente_numeroTelefono?>" id="numtelefonico" name="numtelefonico">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" >Guardar Cambios</button>
+                                    <button type="button" class="btn btn-secondary" id="closeNumber" data-dismiss="modal">Cancelar</button>
+                                    
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="card">
+                    <div class="card-block">
+                        <strong class="card-title">Domicilio </strong>
+                        <a href="#" title="Modificar Domicilio" class="btn-modif hvr-icon-modif" data-toggle="modal" data-target="#modificar-domicilio"></a>
+                        <ul>
+                            <li><?=$m_cliente_direccion?></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Modificar domicilio-->
+            <div class="modal fade" id="modificar-domicilio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div id="mensajesY"></div>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header modal-head-login">
+                                <div class="row col-ms-10">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
+                                            <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
+                                                <span class="mbr-brand__logo">
+                                                    <a href="#">
+                                                        <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
+                                                    </a>
+                                                </span>
+                                                <span class="mbr-brand__name">
+                                                    <p class="mbr-brand__name text-white" href="#">TUS TRÁMITES EN VENEZUELA </p>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="changeAddress" name="changeAddress">
+                            <div class="modal-header">
+                                <h4 class="modal-title text-center" id="myModalLabel">Actualizar Domicilio:</h4><hr>
+                                <div class="form-group row">
+                                    <label class="col-xs-4 col-form-label text-center">Nueva Dirección:</label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control-registro" type="text" value="<?=$m_cliente_direccion?>" id="newaddres" name="newaddres">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeAddress">Cancelar</button>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <!-- banner 728 x 90 -->
+<!-- banner 728 x 90 -->
       <!--   <div class="col-md-12">
              <div class="col-md-8 col-md-offset-2 col-xs-12"><img src="image/publicad728x90.jpg" alt="Publicidad"></div>
-        </div> -->
-    </div>
-</section>
+         </div> -->
+     </div>
+ </section>
 
-<?php include('common_redes.php'); ?>
+ <?php include('common_redes.php'); ?>
 
-<div class="container cnt-banner">
+ <div class="container cnt-banner">
     <div class="col-md-8 col-md-offset-1 col-xs-12"><img src="image/publicad728x90.jpg" alt=""></div>
 </div>
 
@@ -510,6 +451,230 @@ $numeroSolicitudes=mysqli_num_rows($query);
 
 
 <?php include('common_footer.php');?>
+
+<script>
+
+  // When the browser is ready...
+  $(function() {
+    $("#changePass").validate({
+        rules: {
+            claveactual: "required",
+            newpassword: {
+                required: true
+            },
+            repasswordnew: {
+                equalTo: '#newpassword'
+            }
+        },
+
+        // Specify the validation error messages
+        messages: {
+            claveactual: "Debe introducir su clave actual",
+            newpassword: {
+                required: "Debe asignar una clave"
+            },
+            repasswordnew: {
+                required:"Debe repetir su clave",
+                equalTo: 'Sus claves no coninciden'
+            }
+
+        },
+        
+        submitHandler: function(form) {
+            var formData = new FormData($("#changePass")[0]);
+            $.ajax({
+                url: "process/changePass.php",
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                data: formData,
+                async: false,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data['success']) {
+                        $("#mensajes").css("z-index", "999");
+
+                        $($("#mensajes").html("<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                        $('#dataMessage').append(data['data']['message']);
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajes").css("z-index", "-1"); $("#cerrarChangepass").click(); }, 2000);
+                    } else{
+                        $("#mensajes").css("z-index", "999");
+                        $.each(data['data']['message'], function(index, val) {
+                            $($("#mensajes").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                            $('#dataMessage').append(val+ '<br>');
+                        });
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajes").css("z-index", "-1");}, 2000);
+                    };
+                },
+                error: function(data) {
+                    $("#mensajes").css("z-index", "999");
+                    $($("#mensajes").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                    $.each(data['data']['message'], function(index, val) {
+                        $('#dataMessage').append(val+ '<br>');
+                    });
+                    setTimeout(function() { $(".alert").alert('close'); $("#mensajes").css("z-index", "-1");}, 2000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+}
+});
+
+});
+
+
+</script>
+    <script type="text/javascript">
+        function showAjaxModal(id, idServicio)
+        {
+            //var uid = $(this).data('id');
+            var uid = id;
+            var idServ = idServicio;
+            console.log(idServicio);
+            jQuery('#mypay').modal('show', {backdrop: 'static'});
+
+
+            jQuery.ajax({
+                url: "process/detallesPagos.php?id="+ uid+"&idservicio="+idServ,
+                success: function(response)
+                {
+                    jQuery('#mypay .modal-body').html(response);
+                }
+            });
+        }
+        </script>
+<script>
+
+  // When the browser is ready...
+  $(function() {
+    $("#changeAddress").validate({
+        rules: {
+            newaddres: {
+                required: true,
+            }
+        },
+
+        // Specify the validation error messages
+        messages: {
+            newaddres: {
+                required: "Debe introducir su dirección de domicilio",
+            }
+
+        },
+        
+        submitHandler: function(form) {
+            var formData = new FormData($("#changeAddress")[0]);
+            $.ajax({
+                url: "process/changeAddress.php",
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                data: formData,
+                async: false,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data['success']) {
+                        $("#mensajesY").css("z-index", "999");
+                        $($("#mensajesY").html("<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                        $('#dataMessage').append(data['data']['message']);
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajesY").css("z-index", "-1"); $("#closeAddress").click(); }, 2000);
+                    } else{
+                        $("#mensajesY").css("z-index", "999");
+                        $.each(data['data']['message'], function(index, val) {
+                            $($("#mensajesY").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                            $('#dataMessage').append(val+ '<br>');
+                        });
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajesY").css("z-index", "-1");}, 2000);
+                    };
+                },
+                error: function(data) {
+                    $("#mensajesY").css("z-index", "999");
+                    $($("#mensajesY").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                    $.each(data['data']['message'], function(index, val) {
+                        $('#dataMessage').append(val+ '<br>');
+                    });
+                    setTimeout(function() { $(".alert").alert('close'); $("#mensajesY").css("z-index", "-1");}, 2000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+}
+});
+
+});
+</script>
+
+<script>
+
+  // When the browser is ready...
+  $(function() {
+    $("#updateNumber").validate({
+        rules: {
+            numtelefonico: {
+                required: true,
+                minlength: 11,
+                maxlength: 14
+            }
+        },
+
+        // Specify the validation error messages
+        messages: {
+            numtelefonico: {
+                required: "Debe introducir un número telefónico",
+                minlength: "El número debe tener al menos 11 dígitos",
+                maxlength: "El número NO debe tener mas de 14 dígitos"
+            }
+
+        },
+        
+        submitHandler: function(form) {
+            var formData = new FormData($("#updateNumber")[0]);
+            $.ajax({
+                url: "process/changeNumber.php",
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                data: formData,
+                async: false,
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data['success']) {
+                        $("#mensajesx").css("z-index", "999");
+                        $($("#mensajesx").html("<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                        $('#dataMessage').append(data['data']['message']);
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajesx").css("z-index", "-1"); $("#closeNumber").click(); }, 2000);
+                    } else{
+                        $("#mensajesx").css("z-index", "999");
+                        $.each(data['data']['message'], function(index, val) {
+                            $($("#mensajesx").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                            $('#dataMessage').append(val+ '<br>');
+                        });
+                        setTimeout(function() { $(".alert").alert('close'); $("#mensajesx").css("z-index", "-1");}, 2000);
+                    };
+                },
+                error: function(data) {
+                    $("#mensajesx").css("z-index", "999");
+                    $($("#mensajesx").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
+                    $.each(data['data']['message'], function(index, val) {
+                        $('#dataMessage').append(val+ '<br>');
+                    });
+                    setTimeout(function() { $(".alert").alert('close'); $("#mensajesx").css("z-index", "-1");}, 2000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+}
+});
+
+});
+</script>
+
 <script>
 $( "#resumen,#resumenMobil" ).click(function() {
   $( "#resumen-details" ).show( "slow" );

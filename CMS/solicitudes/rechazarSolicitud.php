@@ -3,32 +3,34 @@ include('../extras/conexion.php');
 $link=Conectarse();
 
 header('Content-type: application/json; charset=utf-8');
+
 $aErrores=array();
 $jsondata = array();
 
-if((isset($_GET["idCliente"]))&&($_GET["idCliente"]!="")){ $idCliente=strip_tags(htmlentities(mysqli_real_escape_string($link, $_GET["idCliente"]))); } else {$idCliente=0;}
+if((isset($_GET["idSolicitud"]))&&($_GET["idSolicitud"]!="")){ $idSolicitud=strip_tags(htmlentities(mysqli_real_escape_string($link, $_GET["idSolicitud"]))); } else {$idSolicitud=0;}
 
-if (!control_access("CLIENTES", 'ELIMINAR')) { 
+
+if (!control_access("SOLICITUDES", 'ELIMINAR')) { 
 	$aErrores[]="USTED NO TIENE PERMISOS PARA REALIZAR ESTA ACCIÓN"; 
 }
 
 
 if(count($aErrores)==0) { 
 
-	$query = "DELETE FROM m_clientes  WHERE m_cliente_id='$idCliente' ";
+	$query = "UPDATE m_solicitudes SET m_solicitud_estatus_id='7' WHERE m_solicitud_id='$idSolicitud' ";
 	$resultado = mysqli_query($link, $query);
 	if ($resultado) {
 
 		$jsondata["success"] = true;
 		$jsondata["data"] = array(
-			'message' => "El Cliente ha sido borrado"
+			'message' => "La solicitud ha sido rechazada"
 			);
 
 
 	} else {
 		$jsondata["success"] = false;
 		$jsondata["data"] = array(
-			'message' => "ERROR - Ocurrió un error al intentar borrar al cliente"
+			'message' => "ERROR - Ocurrió un error al intentar rechazar la solicitud"
 			);
 	}
 

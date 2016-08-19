@@ -1,8 +1,8 @@
 <?php include('../logeo.php'); 
 include('../extras/conexion.php');
 $link=Conectarse();
-if (!control_access("VENTAS", 'EDITAR')){ echo "<script language='JavaScript'>document.location.href='../index.php';</script>"; }
-if((isset($_GET["id"]))&&($_GET["id"]!="")){ $idOferta=strip_tags($_GET["id"]); } else {echo "<script language='JavaScript'>document.location.href='../index.php';</script>";}
+if (!control_access("SOLICITUDES", 'VER')){ echo "<script language='JavaScript'>document.location.href='../index.php';</script>"; }
+if((isset($_GET["id"]))&&($_GET["id"]!="")){ $idSolicitud=strip_tags($_GET["id"]); } else {echo "<script language='JavaScript'>document.location.href='../index.php';</script>";}
 
 ?>
 <!DOCTYPE html>
