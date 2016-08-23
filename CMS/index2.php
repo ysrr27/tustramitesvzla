@@ -31,38 +31,47 @@ $link=Conectarse();
         <div class="row top_tiles">
           <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
-              <div class="icon"><i class="fa fa-suitcase"></i>
+              <div class="icon"><i class="fa fa-users"></i>
               </div>
 
               <?php
               $SQLClientes="SELECT COUNT(*) AS clientes FROM m_clientes WHERE m_cliente_estatus='1'  ORDER BY  m_cliente_id ASC ";
               $queryCluentes=mysqli_query($link, $SQLClientes);
               $rowClientes=mysqli_fetch_array($queryCluentes);
-              $cliemtesRegistrados=$rowClientes["clientes"];
+              $clientesRegistrados=$rowClientes["clientes"];
               ?>
-              <div class="count"><?=$cliemtesRegistrados?></div>
+              <div class="count"><?=$clientesRegistrados?></div>
 
               <h3>Clientes Registrados</h3>
-              <p>Clientes ofertantes</p>
+              <p>Clientes Activos</p>
             </div>
           </div>
-          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="tile-stats">
-              <div class="icon"><i class="fa fa-users"></i>
-              </div>
-              <div class="count"><?=$usuariosRegistrados?></div>
 
-              <h3>Usuarios Registrados </h3>
-              <p>Usuarios compradores </p>
-            </div>
-          </div>
+
+           <?php
+          $SQL="SELECT m_producto_id FROM m_productos WHERE m_producto_estatus='1'";
+          $queryS=mysqli_query($link, $SQL);
+          $productosCantidad=mysqli_num_rows($queryS);
+          ?>
           <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="tile-stats">
               <div class="icon"><i class="fa fa-tag"></i>
               </div>
-              <div class="count"><?=$usuariosRegistrados?></div>
+              <div class="count"><?=$productosCantidad?></div>
 
-              <h3>Ofertas Activas</h3>
+              <h3>Productos en Venta </h3>
+              <p>Usuarios compradores </p>
+            </div>
+          </div>
+
+         
+          <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="tile-stats">
+              <div class="icon"><i class="fa fa-tag"></i>
+              </div>
+              <div class="count">0</div>
+
+              <h3>Ventas por Aprobar</h3>
               <p>Ofertas en periodo de validéz</p>
             </div>
           </div>
@@ -72,7 +81,7 @@ $link=Conectarse();
               </div>
 
               <?php
-              $SQL24="SELECT COUNT(*) AS solicitudesDay FROM m_solicitudes WHERE m_solicitud_fechaCreacion between now() - INTERVAL 1 DAY AND now()";
+              $SQL24="SELECT COUNT(*) AS solicitudesDay FROM m_solicitudes WHERE m_solicitud_fechaCreacion >= SYSDATE() - INTERVAL 1 DAY ";
               $query24=mysqli_query($link, $SQL24);
               $row24=mysqli_fetch_array($query24);
               $solicitudesDay=$row24["solicitudesDay"];
@@ -89,7 +98,7 @@ $link=Conectarse();
           <div class="col-md-12">
             <div class="x_panel">
               <div class="x_title">
-                <h2>Transaction Summary <small>Weekly progress</small></h2>
+                <h2>Panel de control <i class="fa fa-dashboard"></i></h2>
                 <div class="filter">
 
                 </div>
@@ -98,7 +107,11 @@ $link=Conectarse();
               <div class="x_content">
                 <div class="col-md-9 col-sm-12 col-xs-12">
                   <div class="demo-container" style="height:250px">
-                    <div id="placeholder3xx3" class="demo-placeholder" style="width: 100%; height:250px;"></div>
+                    <div id="placeholder3xx3" class="demo-placeholder" style="width: 100%; height:250px;">
+
+                    <h1>TUS TRAMITES EN VENEZUELA <i class="fa fa-dashboard"></i></h1>
+                    <h3>Profesionalidad y Compromiso... </h3>
+                    </div>
                   </div>
 
 
@@ -179,6 +192,7 @@ $link=Conectarse();
 
   <!-- Flot -->
   <script>
+  /*
   $(document).ready(function() {
         //random data
          <?php
@@ -230,6 +244,7 @@ $link=Conectarse();
           }
         }], options);
       });
+*/
 </script>
 <!-- /Flot -->
 

@@ -1,125 +1,54 @@
+<?php include('logueo.php'); 
+include('extras/conexion.php');
+$link=Conectarse();
+
+
+if((isset($_GET["id"]))&&($_GET["id"]!="")){ $idProducto=strip_tags(htmlentities($_GET["id"])); } else {echo "<script language='JavaScript'>document.location.href='index.php';</script>";}
+
+
+$SQL="SELECT *, SUM(m_venta_cantidad) AS vendidas FROM m_productos, m_ventas WHERE m_producto_id='$idProducto' AND m_venta_idProducto=m_producto_id";
+$query=mysqli_query($link, $SQL);
+$disponible=mysqli_num_rows($query);
+$row=mysqli_fetch_array($query);
+$m_producto_nombre=$row["m_producto_nombre"];
+$m_producto_descripcion=$row["m_producto_descripcion"];
+$m_producto_precio=$row["m_producto_precio"];
+$m_producto_cantidad=$row["m_producto_cantidad"];
+$m_producto_estatus=$row["m_producto_estatus"];
+$vendidad=$row["vendidas"];
+if (is_null($NumeroVentas)) {
+    $NumeroVentas=0;
+}
+$disponibles=$m_producto_cantidad-$NumeroVentas;
+
+$SQL="SELECT SUM(CASE WHEN m_producto_destacado = '1' THEN 1 ELSE 0 END) AS destacadas, SUM(CASE WHEN m_producto_destacado ='0' THEN 1 ELSE 0 END) AS noDestacadas FROM m_productos WHERE m_producto_estatus='1'   ORDER BY  m_producto_estatus ASC ";
+$queryDestacada=mysqli_query($link, $SQL);
+$rowDes=mysqli_fetch_array($queryDestacada);
+$destacadas=$rowDes["destacadas"];
+$noDestacadas=$rowDes["noDestacadas"];
+
+
+if ($disponible==0) {
+   echo "<script language='JavaScript'>document.location.href='shop.php';</script>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Shop | Tramites en Venezuela</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="generator" content="Mobirise v2.6.1, mobirise.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/images/discover-mobile-350x350-16.png" type="image/x-icon">
-    <meta name="description" content="Free Bootstrap Template">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/mobirise/css/style.css">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-    <link rel="stylesheet" href="assets/socicon/css/socicon.min.css">
-    <link href="assets/mobirise/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <!-- Slider -->
-    <link rel="stylesheet" href="assets/mobirise-slider/style.css">
+    <?php include('common_head.php');?>
 
 </head>
 <body>
 
-<section class="mbr-navbar mbr-navbar--freeze mbr-navbar--absolute mbr-navbar--transparent mbr-navbar--sticky mbr-navbar--auto-collapse" id="menu-74">
-    <div class="mbr-navbar__section mbr-section">
-        <div class="mbr-section__container container">
-            <div class="mbr-navbar__container">
-                <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                    <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                        <span class="mbr-brand__logo"><a href="https://mobirise.com/bootstrap-template/"><img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png" alt="Tus Tramites en Venezuela"></a></span>
-                        <span class="mbr-brand__name"><a class="mbr-brand__name text-white" href="index.html">T. VZLA</a></span>
-                    </span>
-                </div>
-                <div class="mbr-navbar__hamburger mbr-hamburger text-white"><span class="mbr-hamburger__line"></span></div>
-                <div class="mbr-navbar__column mbr-navbar__menu">
-                    <nav class="mbr-navbar__menu-box mbr-navbar__menu-box--inline-right">
-                        <div class="mbr-navbar__column">
-                            <ul class="mbr-navbar__items mbr-navbar__items--right mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active">
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="index.html">INICIO</a></li> 
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="service.html">SERVICIOS</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="shop.html">SHOP</a></li> 
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="quienessomos.html">QUIÉNES SOMOS</a></li>
-                                <li class="mbr-navbar__item"><a class="mbr-buttons__link btn btn-rg text-white" href="contact.html">CONTACTO</a>
-                                    <button type="button" class="btn-log mbr-buttons__btn btn btn-lg animated fadeInUp delay btn-warning" data-toggle="modal" data-target="#myModallogueo"><i class="fa fa-user" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php 
+    include('common_menu.php');
+    ?>
     <!-- modal de logueo -->
 
     <!-- Modal -->
-    <div class="modal fade" id="myModallogueo" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header modal-head-login">
-                <div class="row col-ms-10">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-10">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="mbr-navbar__column mbr-navbar__column--s mbr-navbar__brand">
-                            <span class="mbr-navbar__brand-link mbr-brand mbr-brand--inline">
-                                <span class="mbr-brand__logo">
-                                    <a href="#">
-                                        <img class="mbr-navbar__brand-img mbr-brand__img" src="image/logistics-international-service-by-airplane.png">
-                                    </a>
-                                </span>
-                                <span class="mbr-brand__name">
-                                    <a class="mbr-brand__name text-white" href="#">TUS TRAMITES EN VENEZUELA </a>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                    
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <form class="form-horizontal">
-                            <div class="form-group row col-sm-10">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <div class="input-group-addon ico-login"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                        <input type="email" class="form-control-registro form-login" id="inputEmail3" placeholder="Correo electrónico">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm-10">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-9">
-                                    <div class="input-group">
-                                        <div class="input-group-addon ico-login"><i class="fa fa-lock" aria-hidden="true"></i></div>
-                                        <input type="password" class="form-control-registro form-login" id="inputPassword3" placeholder="Contraseña">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm-10">
-                                <div class="col-md-3"></div>
-                                <div class="col-sm-9">
-                                    <button type="button" class="btn-login btn btn-primary btn-lg btn-block">Entrar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>   
-                    <div class="modal-footer">
-                        <div class="row modal-color">
-                            <div class="col-md-6 text-left"><a href="register.html"><p>Registrarse</p></a></div>
-                            <div class="col-md-6"> <a href="#"><p>¿Olvidaste tú contraseña?</p></a></div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<!-- end modal logueo -->
+    <?php include("modal.php"); ?>
+    <!-- end modal logueo -->
 </section>
 
 
@@ -147,49 +76,53 @@
                     <div class="col-md-10">
                         <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
                             <span class='zoom' id='ex1'>
-                                <img id="destacada" src='http://localhost/tramitesVzla/image/cho2.jpg' width='555' height='320' alt='Daisy on the Ohoopee'/>
+
+                                <?php 
+                                $SQlFotos="SELECT * FROM r_fotos_productos WHERE r_fotos_producto_idProducto='$idProducto'";
+                                $queryFotos=mysqli_query($link, $SQlFotos);
+                                $rowFotos=mysqli_fetch_array($queryFotos);
+                                $r_fotos_producto_path=$rowFotos["r_fotos_producto_path"];
+                                ?>
+                                <img id="destacada" src='multimedia/<?=$r_fotos_producto_path?>' width='555' height='320' alt='Daisy on the Ohoopee'/>
                             </span>
                         </div>
                     </div>    
                     <div class="col-md-2">
                         <ul class="thumbnails">
-                            <li>
-                                <a class="button" id="img-1" href="#.">
-                                    <img src="http://localhost/tramitesVzla/imageZoom/example-images/3_zoom_1.jpg" alt="" />
-                                </a>
-                            </li>
-                            <li>
-                                <a class="button" id="img-2" href="#.">              
-                                    <img src="http://localhost/tramitesVzla/image/cho2.jpg" alt="" />
-                                </a>
-                            </li>
-                            <li>
-                                <a class="button" id="img-3" href="#.">
-                                    <img src="http://localhost/tramitesVzla/imageZoom/example-images/3_zoom_2.jpg" alt="" />
-                                </a>
-                            </li>
-                            <li>
-                                <a class="button" id="img-4" href="#.">
-                                    <img src="http://localhost/tramitesVzla/imageZoom/example-images/3_zoom_4.jpg" alt="" />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-5 cont-product-title">
-                <h3 class="product-title">Bombones de Chocolate</h3>
-                <div class="star">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <?php 
+                            $SQlFotos="SELECT * FROM r_fotos_productos WHERE r_fotos_producto_idProducto='$idProducto'";
+                            $queryFotos=mysqli_query($link, $SQlFotos);
+                            $i=1;
+                            while ($rowFotos=mysqli_fetch_array($queryFotos)) {
+                                $r_fotos_producto_path=$rowFotos["r_fotos_producto_path"];
+                                $i++;
+
+                                ?>
+                                <li>
+                                    <a class="button" id="img-<?=$i?>" href="#.">
+                                        <img src="multimedia/<?=$r_fotos_producto_path?>" alt="" />
+                                    </a>
+                                </li>
+
+                                <?php  } ?>
+
+                            </ul>
+                        </div>
+                    </section>
                 </div>
+                <div class="col-md-5 cont-product-title">
+                    <h3 class="product-title"><?=$m_producto_nombre?></h3>
+                    <div class="star">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </div>
                 <hr>
                 <ul>
                     <li>
-                        <h3 class="product-title"><i class="fa fa-eur" aria-hidden="true"></i>70.00 <sub>00</sub></h3>
+                        <h3 class="product-title"><i class="fa fa-eur" aria-hidden="true"></i><?=$m_producto_precio?> <sub>00</sub></h3>
                     </li>
                     <li>
                         <h3><i class="fa fa-paypal" aria-hidden="true"></i> | <i class="fa fa-plane" aria-hidden="true"></i> </h3>
@@ -197,13 +130,19 @@
                     <li>
                         <label>Cantidad:</label>
                         <div class="product-quantity clearfix">
-                            <a class="btn-cant" id="modal-qty-minus">-</a>
-                            <input type="text" class="btn-cant form-control" id="modal-qty" value="5">
-                            <a class="btn-cant" id="modal-qty-plus">+</a>
+                            <a class="btn-cant menos" id="modal-qty-minus">-</a>
+                            <input type="text" class="btn-cant form-control" id="cantidad" name="cantidad" value="1">
+                            <a class="btn-cant mas" id="modal-qty-plus">+</a>
                         </div>
                     </li>
                     <li><br>
+
+                        <?php if ($usuNombre!="") { ?>
+
                         <a href="#." class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Comprar</a>
+                        <?php } else { ?>
+                        <button type="button" class="btn-rg btn btn-default" data-toggle="modal" data-target="#myModallogueo"><i class="fa fa-cart-plus" aria-hidden="true"></i>Comprar</button>
+                          <?php } ?>
                     </li>
                     <li><br>
                         <label>Compartir</label>  
@@ -211,7 +150,7 @@
                     </li>
                 </ul>
                 <hr>
-                <p>Sed egestas urna quam, sit amet euismod ligula commodo vitae. Cras hendrerit quam est, non dapibus turpis porta in. Fusce viverra, lectus vitae dignissim interdum, erat leo egestas velit, eu tincidunt tellus eros a mauris.&nbsp;</p>
+                <p><?=$m_producto_descripcion?></p>
             </div>
         </div>
         <div class="row">
@@ -223,289 +162,148 @@
                 <h3 class="title-shop">Nuevos Productos</h3>
             </div>
             <div class="container">
+              <div id="carousel-example-generic" class="carousel slide cont-carrousel" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
 
-                <div id="carousel-example-generic" class="carousel slide cont-carrousel" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+                    <?php
+                    for ($i=0 ; $i<$destacadas; $i++ ) { 
+                        ?>
+                        <li data-target="#carousel-example-generic" <?php if($i==0){ echo 'class="active"';} ?> data-slide-to="<?=$i?>"></li>
+                        <?php } ?>
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="image/choco1.jpg"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Bombones de Chocolate</h3>
-                                                <div class="star">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <?php
+                        $SQL="SELECT * FROM m_productos WHERE m_producto_estatus=1 AND m_producto_destacado=0 ORDER BY m_producto_updated_at DESC LIMIT 0,6";
+                        $query=mysqli_query($link, $SQL);
+                        $total=mysqli_num_rows($query);
+                        $i=0;
+                        $j=1;
+                        while ($row=mysqli_fetch_array($query)) {
+                            $m_producto_id=$row["m_producto_id"];
+                            $m_producto_nombre=$row["m_producto_nombre"];
+                            $m_producto_descripcion=$row["m_producto_descripcion"];
+                            $m_producto_precio=$row["m_producto_precio"];
+                            $m_producto_cantidad=$row["m_producto_cantidad"];
+                            $m_producto_estatus=$row["m_producto_estatus"];
+                            $i++;
+                            $SQLFoto="SELECT * FROM r_fotos_productos WHERE r_fotos_producto_idProducto='$m_producto_id' LIMIT 0,1";
+                            $queryFoto=mysqli_query($link, $SQLFoto);
+                            $rowFoto=mysqli_fetch_array($queryFoto);
+                            $r_fotos_producto_path=$rowFoto["r_fotos_producto_path"];
+                            if($i==1){ 
+                             ?>
+                             <div class="item <?php if($j==1){ echo 'active';} ?> ">
+                                <?php } ?>
+
+                                <div class="col-md-4">
+                                    <div>
+                                        <div class="thumbnail">
+                                            <div class="image"><img class="undefined ico-service" src="multimedia/<?=$r_fotos_producto_path?>"></div>
+                                            <div class="caption">
+                                                <div>
+                                                    <h3><?=$m_producto_nombre?></h3>
+                                                    <div class="star">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                    </div>
+                                                    <p><?=$m_producto_descripcion?> </p>
+                                                    <h3 class="red-border-bottom"><i class="fa fa-eur" aria-hidden="true"></i><?=$m_producto_precio?></h3>
                                                 </div>
-                                                <p>Duis sodales arcu eget gravida mollis... </p>
-                                                <h3 class="red-border-bottom"><i class="fa fa-eur" aria-hidden="true"></i>70.00</h3>
+                                                <p><a href="internal_shop.php?id=<?=$m_producto_id?>"class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
                                             </div>
-                                            <p><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="image/full_carre.jpg"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Chocolate Carré</h3>
-                                                <div class="star">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                </div>
-                                                <p>Duis sodales arcu eget gravida mollis. </p>
-                                                <h3 class="red-border-bottom"><i class="fa fa-eur" aria-hidden="true"></i>90.00</h3>
-                                            </div>
-                                            <p><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="assets/images/iphone-6-458150-1920-1920x1285-95.jpg"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Iphone 7 apple</h3>
-                                                <div class="star">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                </div>
-                                                <p>Duis sodales arcu eget gravida mollis..</p>
-                                                <h3 class="red-border-bottom"><i class="fa fa-eur" aria-hidden="true"></i>700.00</h3>
-                                            </div>
-                                            <p><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <?php
+                                if (($i==3) or($i==$total)) {
+                                    echo "</div>";
+                                    $i=0;
+                                }
+                                $j++;
+
+                            } ?>
+
+
                         </div>
-                        <div class="item">
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="image/lista.png"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Partida de nacimiento</h3>
-                                                <p>Duis sodales arcu eget gravida mollis. Sed condimentum nibh at dapibus semper. </p>
-                                            </div>
-                                            <p class="group"><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="image/lista.png"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Partida de nacimiento</h3>
-                                                <p>Duis sodales arcu eget gravida mollis. Sed condimentum nibh at dapibus semper. </p>
-                                            </div>
-                                            <p class="group"><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div>
-                                    <div class="thumbnail">
-                                        <div class="image"><img class="undefined ico-service" src="image/lista.png"></div>
-                                        <div class="caption">
-                                            <div>
-                                                <h3>Partida de nacimiento</h3>
-                                                <p>Duis sodales arcu eget gravida mollis. Sed condimentum nibh at dapibus semper. </p>
-                                            </div>
-                                            <p class="group"><a href="#" class="btn-rg btn btn-default"><i class="fa fa-cart-plus" aria-hidden="true"></i> Más informacón</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1441268399520835";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+
+                        <ul class="comentarios">
+                            <li class="activeComent"><a href="#"><span class="icofb"></span>Comentarios</a></li>
+                        </ul>
+
+                        <div class="comentArtic">
+                            <div class="fb-comments" data-href="tustramitesenvenezuela.com" data-width="728" data-numposts="3"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <?php include('common_redes.php'); ?>
+
+        <div class="container cnt-banner">
+            <div class="col-md-8 col-md-offset-1 col-xs-12"><img src="image/publicad728x90.jpg" alt=""></div>
         </div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                    js = d.createElement(s); js.id = id;
-                    js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=1441268399520835";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
 
-                <ul class="comentarios">
-                    <li class="activeComent"><a href="#"><span class="icofb"></span>Comentarios</a></li>
-                </ul>
+        <?php include('common_footer.php');?>
 
-                <div class="comentArtic">
-                    <div class="fb-comments" data-href="tustramitesenvenezuela.com" data-width="728" data-numposts="3"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size mbr-parallax-background section-envio" id="msg-box3-117">
-    <div class="mbr-overlay background-envio"></div>
-    <div class="mbr-section__container container mbr-section__container--first">
-        <div class="mbr-header mbr-header--wysiwyg row">
-            <div class="col-sm-8 col-sm-offset-2">
-                <h1 class="mbr-header__text">ENVIOS A CUALQUIER PARTE DEL MUNDO...</h1>
-                
-            </div>
-        </div>
-    </div>
-    <div class="mbr-section__container container mbr-section__container--middle">
-        <div class="row">
-            <div class="mbr-article mbr-article--wysiwyg col-sm-8 col-sm-offset-2">
-                <ul>
-                    <li><em>Ahorra tiempo y dinero.</em></li>
-                    <li><em>Nos caracterizamos por nuestra responsabilidad y compromiso.</em></li>
-                    <li><em>En tramites somos los lideres.</em><br></li>
-                    <li><em>Tramites en tiempo record.<br></em></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+        <!-- Social Share Kit JS -->
+        <script src="share/dist/js/social-share-kit.js?v=1.0.8"></script>
 
-    <div class="mbr-section__container container mbr-section__container--last">
-        <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-            <h3 class="mbr-header__text">SÍGUENOS EN:</h3>
-                <div class="mbr-section__container container">
-                    <div class="mbr-header mbr-header--inline row">
-                        <div class="mbr-social-icons mbr-social-icons--style-1 col-sm-8">
-                            <a class="mbr-social-icons__icon socicon-bg-twitter" title="Twitter" target="_blank" href="https://twitter.com/mobirise"><i class="socicon socicon-twitter"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/pages/Mobirise/1616226671953247"><i class="socicon socicon-facebook"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-google" title="Google+" target="_blank" href="https://plus.google.com/u/0/+Mobirise/posts"><i class="socicon socicon-google"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-youtube" title="YouTube" target="_blank" href="http://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw"><i class="socicon socicon-youtube"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-instagram" title="Instagram" target="_blank" href="https://instagram.com/mobirise/"><i class="socicon socicon-instagram"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-pinterest" title="Pinterest" target="_blank" href="https://www.pinterest.com/mobirise/"><i class="socicon socicon-pinterest"></i></a>  
-                            <a class="mbr-social-icons__icon socicon-bg-behance" title="Behance" target="_blank" href="https://www.behance.net/Mobirise"><i class="socicon socicon-behance"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-tumblr" title="Tumblr" target="_blank" href="http://mobirise.tumblr.com/"><i class="socicon socicon-tumblr"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-linkedin" title="LinkedIn" target="_blank" href="https://www.linkedin.com/in/mobirise"><i class="socicon socicon-linkedin"></i></a> 
-                            <a class="mbr-social-icons__icon socicon-bg-android" title="Google Play" target="_blank" href="https://play.google.com/store/apps/details?id=com.mobirise.mobirise"><i class="socicon socicon-android"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        <script src="assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
+        <script src='assets/mobirise/js/jquery.zoom.js'></script>
 
-<div class="container cnt-banner">
-    <div class="col-md-8 col-md-offset-1 col-xs-12"><img src="image/publicad728x90.jpg" alt=""></div>
-</div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57865161c869895a"></script>
+        <script>
+        $(document).ready(function(){
+            $('.button').click(function(){
+                var test = jQuery(this).attr("id");
+                var images = $('#'+test+' img').attr('src');
+                $('#destacada').attr('src', images);
+                $('#ex1').zoom();  
+            });
 
-<section class="mbr-section mbr-section--relative mbr-section--fixed-size section-contact" id="contacts2-90">
-    <div class="mbr-section__container container">
-        <div class="mbr-contacts mbr-contacts--wysiwyg row">
-            <div class="row ico-footer">
-                <div class="col-md-2 text-center mbr-contacts__text">
-                    <a href="#.">
-                        <strong><i class="fa fa-whatsapp ico-footer" aria-hidden="true"></i></strong><br>
-                        <strong class="mbr-contacts__text">+34 693 80 18 09</strong>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center mbr-contacts__text">
-                    <a href="https://www.facebook.com/Tus-tr%C3%A1mites-en-Venezuela-718992711564456/?fref=ts">
-                        <strong><i class="fa fa-facebook-square" aria-hidden="true"></i></strong><br>
-                        <strong>Tus Trámites en Venezuela</strong>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center mbr-contacts__text">
-                    <a href="https://twitter.com/Tustramitesenvz?ref_src=twsrc%5Etfw">
-                        <strong><i class="fa fa-twitter-square" aria-hidden="true"></i></strong><br>
-                        <strong> @Tustramitesenvz </strong>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center mbr-contacts__text">
-                    <a href="https://www.instagram.com/tustramitesenvenezuela/">
-                        <strong><i class="fa fa-instagram" aria-hidden="true"></i></strong><br>
-                        <strong>tustramitesenvenezuela</strong>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center mbr-contacts__text">
-                    <a href="mail.google.com">
-                        <strong><i class="fa fa-envelope" aria-hidden="true"></i></strong><br>
-                        <strong>envenezuelatustramites@gmail.com</strong>
-                    </a>
-                </div>
-            </div>    
-        </div>
-    </div>
-</section>
-
-<footer class="mbr-section mbr-section--relative mbr-section--fixed-size footer-color" id="footer1-91">
-    <div class="mbr-section__container container">
-        <div class="mbr-footer mbr-footer--wysiwyg row">
-            <div class="col-sm-12">
-                <p class="mbr-footer__copyright"></p><p>Copyright (c) 2015 Tus Tramites en Venezuela.</p><p></p>
-            </div>
-            <div class="col-sm-12">
-                <p class="mbr-footer__copyright"></p><p class="mbr-contacts__text">Desarrollado por <a href="#" class="text-gray"><strong> SoftSolution - @ysrr27 </strong></a></p><p></p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script src="assets/jquery/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/smooth-scroll/SmoothScroll.js"></script>
-<script src="assets/jarallax/jarallax.js"></script>
-<script src="assets/mobirise/js/script.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<!-- Social Share Kit JS -->
-<script src="share/dist/js/social-share-kit.js?v=1.0.8"></script>
-
-<script src="assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
-<script src='assets/mobirise/js/jquery.zoom.js'></script>
-
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57865161c869895a"></script>
-<script>
-    $(document).ready(function(){
-        $('.button').click(function(){
-            var test = jQuery(this).attr("id");
-            var images = $('#'+test+' img').attr('src');
-            $('#destacada').attr('src', images);
             $('#ex1').zoom();  
         });
 
-        $('#ex1').zoom();  
-    });
-</script>
-<!-- BEGIN JIVOSITE CODE {literal} -->
-<script type='text/javascript'>
-    (function(){ var widget_id = 'NlNfFP7XUp';
-    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
-    <!-- {/literal} END JIVOSITE CODE -->
-</body>
-</html>
+
+
+        $(".mas").click(function (e) {
+            var maximo = <?=$m_producto_cantidad?>;
+            var cantidad=parseInt(document.getElementById("cantidad").value);
+            var suma = cantidad+1;
+            if (cantidad<maximo) {
+            document.getElementById("cantidad").value=suma;
+        }
+      });
+        $(".menos").click(function (e) {
+            var minimo = 1;
+            var cantidad=parseInt(document.getElementById("cantidad").value);
+            var resta = cantidad-1;
+            if (cantidad>minimo) {
+            document.getElementById("cantidad").value=resta;
+        }
+      });
+
+        </script>
+
+    </body>
+    </html>

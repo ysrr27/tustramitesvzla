@@ -26,7 +26,7 @@
       <ul class="nav side-menu">
         <li><a><i class="fa fa-home"></i> inicio <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu" style="display: block;">
-            <li><a href="<?=$serveractual?>/index2.php">Dashboard</a></li>
+            <li><a href="<?=$serveractual?>/index2.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 
           </ul>
         </li>
@@ -69,6 +69,34 @@
             <?php } ?>
             <?php if (control_access("SERVICIOS", 'VER')) { ?>
             <li><a href="<?=$serveractual?>/servicios/listar.php"><i class="fa fa-database"></i>Listar</a>
+            </li>
+            <?php } ?>
+          </ul>
+        </li>
+        <?php } ?>
+
+        <?php if (control_access("PRODUCTOS", 'VER')) { ?>
+
+        <li><a><i class="fa fa-cubes"></i> Productos  <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <?php if (control_access("PRODUCTOS", 'AGREGAR')) { ?>
+            <li><a href="<?=$serveractual?>/productos/index.php"><i class="fa fa-plus-square-o"></i>Agregar</a>
+            </li>
+            <?php } ?>
+            <?php if (control_access("PRODUCTOS", 'VER')) { ?>
+            <li><a href="<?=$serveractual?>/productos/listar.php"><i class="fa fa-database"></i>Listar</a>
+            </li>
+            <?php } ?>
+          </ul>
+        </li>
+        <?php } ?>
+
+        <?php if (control_access("VENTAS", 'VER')) { ?>
+
+        <li><a><i class="fa fa-ticket"></i> Ventas  <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <?php if (control_access("VENTAS", 'VER')) { ?>
+            <li><a href="<?=$serveractual?>/ventas/listar.php"><i class="fa fa-database"></i>Listar</a>
             </li>
             <?php } ?>
           </ul>

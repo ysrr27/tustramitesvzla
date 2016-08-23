@@ -1,7 +1,7 @@
 <?php include('../logueo.php'); 
 include('../extras/conexion.php');
 $link=Conectarse();
-
+include("SendMailUserSolicitud.php");
 
 header('Content-type: application/json; charset=utf-8');
 $aErrores=array();
@@ -16,6 +16,21 @@ if((isset($_POST["postalcodeFinal"]))&&($_POST["postalcodeFinal"]!="")){ $postal
 if((isset($_POST["addressFinal"]))&&($_POST["addressFinal"]!="")){ $addressFinal=strip_tags(htmlentities(mysqli_real_escape_string($link, $_POST["addressFinal"]))); } else {$aErrores[] = "Debe introducir la dirección de destino";}
 if((isset($_POST["idsFiles"]))&&($_POST["idsFiles"]!="")){ $idsFiles=strip_tags(htmlentities(mysqli_real_escape_string($link, $_POST["idsFiles"]))); } else {$aErrores[] = "No se han adjuntado los recaudos BACK";}
 if((isset($_POST["tipotelefono"]))&&($_POST["tipotelefono"]!="")){ $tipotelefono=strip_tags(htmlentities(mysqli_real_escape_string($link, $_POST["tipotelefono"]))); } else {$aErrores[] = "error";}
+
+
+$SQLNombre="SELECT m_cliente_nombre, m_cliente_apellido, m_cliente_email FROM  m_clientes WHERE m_cliente_id='$idusuario'";
+$queryNombre=mysqli_query($link, $SQLNombre);
+$rowNombre=mysqli_fetch_array($queryNombre);
+$m_cliente_nombre=utf8_encode($rowNombre["m_cliente_nombre"]);
+$m_cliente_apellido=utf8_encode($rowNombre["m_cliente_apellido"]);
+$m_cliente_email=$rowNombre["m_cliente_email"];
+
+
+
+$SQL="SELECT m_servicio_nombre FROM m_servicios WHERE m_servicio_id='$idServicio'";
+$query=mysqli_query($link, $SQL);
+$row=mysqli_fetch_array($query);
+$m_servicio_nombre=$row["m_servicio_nombre"];
 
 
 $fechacompleta=date('Y-m-d H:i:s');
@@ -44,7 +59,8 @@ if(count($aErrores)==0) {
 		$jsondata["data"] = array(
 			'message' => "Solicitud generada correctamente..."
 			);
-
+		$nombreMail=$m_cliente_nombre." ".$m_cliente_apellido;
+		sendMailUser($m_cliente_email, $nombreMail , $m_servicio_nombre);
 
 	} else {
 		$jsondata["success"] = false;

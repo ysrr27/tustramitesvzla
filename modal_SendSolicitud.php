@@ -609,6 +609,7 @@
                             $($("#mensajesx").html("<div class='alert alert-error'><a href='#' class='close' data-dismiss='alert' id='cerrar'>&times;</a><div id='dataMessage'></div></div>").fadeIn("slow"));
                             $('#dataMessage').append(val+ '<br>');
                         });
+                        console.log(data['data']['message']);
                         setTimeout(function() { $(".alert").alert('close'); $("#mensajesx").css("z-index", "-1");}, 2000);
                     };
                 },
@@ -618,6 +619,7 @@
                     $.each(data['data']['message'], function(index, val) {
                         $('#dataMessage').append(val+ '<br>');
                     });
+                    console.log(data['data']['message']);
                     setTimeout(function() { $(".alert").alert('close'); $("#mensajesx").css("z-index", "-1");}, 2000);
                 },
                 cache: false,

@@ -18,7 +18,7 @@
 
 		var defaults =
 		{
-			prefix: 'US$ ',
+			prefix: '€',
             suffix: '',
 			centsSeparator: '.',
 			thousandsSeparator: ',',
