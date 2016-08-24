@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="UTF-8">
+	<title>Tramites en Venezuela</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="generator" content="Mobirise v2.6.1, mobirise.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="assets/images/discover-mobile-350x350-16.png" type="image/x-icon">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700,400&amp;subset=cyrillic,latin,greek,vietnamese">
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/animate.css/animate.min.css">
+	<link rel="stylesheet" href="assets/socicon/css/socicon.min.css">
+	<link rel="stylesheet" href="assets/mobirise/css/style.css">
+	<link rel="stylesheet" href="assets/mobirise-slider/style.css">
+	<link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+	<link href="assets/mobirise/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	<!-- calendario -->
+	<link rel="stylesheet" href="assets/calendario/assets/css/style-personal.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="assets/calendario/assets/js/simplecalendar.js" type="text/javascript"></script>
+
+
+
+
+
+</head>
+<body>
+
+	<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-84" style="background-color: rgb(240, 240, 240);">
+		<div class="container cnt-banner">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8"><img src="image/publicad728x90.jpg" alt=""></div>
+				<div class="col-md-2"></div>
+			</div>
+		</div>
+		<div class="container" id="features1-75">
+			<div class="row">
+				<div class="section-header-services">
+					<h2 class="dark-text">NOTICIAS</h2>
+				</div>
+			</div>
+		</div>
+		<div class="mbr-section__container container">
+			<div class="mbr-header mbr-header--inline row cnt-news">
+				<!-- Destacada -->
+				<div class="col-xs-12 col-md-8 col-sm-8" id="destacada"></div>
+				<!-- twitter -->
+				<div class="col-xs-12 col-md-4 col-sm-4">
+					<a class="twitter-timeline" href="https://twitter.com/Tustramitesenvz" data-widget-id="737246281807060992">Tweets por el @Tustramitesenvz.</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</div>
+			</div>
+			<!-- Noticias secundarias -->
+			<div class="row cnt-news-secundarias" id="secundarias"></div>
+		</div>
+		<div class="container cnt-banner">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-1"><img src="image/publicad728x90.jpg" alt=""></div>
+			</div>
+		</div>
+	</section>
+
+
+	<script src="assets/jquery/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script src="assets/smooth-scroll/SmoothScroll.js"></script>
+	<script src="assets/jarallax/jarallax.js"></script>
+	<script src="assets/bootstrap-carousel-swipe/bootstrap-carousel-swipe.js"></script>
+	<script src="assets/masonry/masonry.pkgd.min.js"></script>
+	<script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+	<script src="assets/social-likes/social-likes.js"></script>
+	<script src="assets/mobirise/js/script.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="assets/mobirise/js/jQRSS.js"></script>
+	<script>
+		function getFeedNewsBlock() {
+			var url = 'http://www.lapatilla.com/site/feed/',
+			props = { count: 4 };
+			var total = 0;
+			var limit = 3;
+			$.jQRSS(url, props, function (newsFeed) {
+				if (!newsFeed) return false;
+			//	$.jQRSS.debug('[getFeedNewsBlock()]', newsFeed);
+			
+				for (var i = 0; i < newsFeed.entries.length; i++) {
+					var entry = newsFeed.entries[i];
+
+					var author = entry['author'] ? entry['author'] : "",
+					categories = entry['categories'] ? entry['categories'] : new Array(),
+					content = entry['content'] ? entry['content'] : "",
+					contentSnippet = entry['contentSnippet'] ? entry['contentSnippet'] : "",
+					link = entry['link'] ? entry['link'] : "",
+					publishedDate = entry['publishedDate'] ? entry['publishedDate'] : "",
+					title = entry['title'] ? entry['title'] : "";
+					var firstimg = $(content).find('img:first').attr('src');
+					var secondimg = $(content).find('img:last').attr('src');
+					var imagenNoencontrada = "image/not-font.png";
+
+					if (firstimg === undefined) {
+						firstimg = secondimg;
+					}
+					if (firstimg === undefined) {
+						firstimg = imagenNoencontrada
+					}
+
+					if (i == 0) {
+						var destacada ="<article class='important'><div class='wpImg'><img src='"+firstimg+"' width='425' height='750'><h2><a href='"+link+"' target='_blank'>"+title+"</a></h2></div></article>";
+						$('#destacada').append(destacada);
+					}
+					else if (total < limit) {
+						var secundarias = "<div class='col-xs-12 col-md-4 col-sm-4'><article><img src='"+firstimg+"'><h2><a href='"+link+"' target='_blank'>"+title+"</a></h2></article></div>";
+						$("#secundarias").append(secundarias);
+					} else {
+						total = total + 1;
+					}
+				}
+
+			//	$.jQRSS.debug("$.jQRSS.requests["+$.jQRSS.requests.length+"]:\t", $.jQRSS.requests);
+			});
+		}
+
+		getFeedNewsBlock();
+	
+		function getObjectLength(obj) {
+			if (typeof obj != "object") return false;
+			var i = 0;
+			for (x in obj) i++;
+				return i;
+		}
+	
+	</script>
+</body>
+</html>
