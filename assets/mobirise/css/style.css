@@ -1297,7 +1297,7 @@ ul, ol {
   letter-spacing: 1px;
   margin-bottom: 32px;
   margin-top: 11px;
-  min-width: 270px
+  min-width: 100%;
 }
 .content-2 .thumbnail h3 + h3 {
   margin-top: -32px;
@@ -1958,6 +1958,9 @@ ul, ol {
   }
   .banner300x250 img{
     width: 100%;
+  }
+  .btn-rg {
+    padding: 6px 12px;
   }
 }
 
@@ -3427,6 +3430,9 @@ article h2 {
     left: 5px;
     text-align: center;
   }
+  .important{
+    height: 300px !important;
+  }
   .mbr-buttons--active .mbr-buttons__btn,
   .mbr-buttons--active .mbr-buttons__link {
     margin-left: 0;
@@ -3626,6 +3632,7 @@ article h2 {
 
 }
 /*section*/
+.important{height: 425px;}
 section{padding:8px 0}
 .aside{float:left;}
 .aside article{float:none}
@@ -3637,9 +3644,10 @@ article h4{color:#191f43;font-weight:400;}
 article h2{color:#395259;background:#fff;font-size:16px;padding:12px 15px;position:absolute;z-index:9;bottom:0;left:0;line-height:18px;width:100%; margin: 0px auto;    border-top: 6px solid darkblue;}
 .block{overflow:hidden;margin-bottom:25px}
 article{margin:4px 5px;float:left;width:100%;position:relative}
-article img{width:100%;display:block;}
+#secundarias article {height: 252px;}
+article img{width:100%;display:block;height: 100%;}
 .icoPlay{width:auto;position:absolute;top:5px;right:5px}
-article.important .wpImg{position:relative}
+article.important .wpImg{position:relative;height: 100%;}
 article.important h2{font-size:18px;padding:15px 20px;line-height:28px;width:100%;}
 article.important h2 a {text-decoration: none; color: #395259;letter-spacing: 0px;}
 article h2 a {text-decoration: none; color: #395259;letter-spacing: 0px;}
@@ -3666,6 +3674,9 @@ article.bannerInt img{width:auto;display:inline}
   }
   article.important h2 {
     position: relative;
+  }
+  .important{
+    height: 100%;
   }
 
 }
